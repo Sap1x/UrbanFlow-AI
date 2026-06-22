@@ -84,19 +84,15 @@ Traditional traffic monitoring systems fail because they only answer "What is ha
 
 ---
 
-## 4. Command Center
+## 4. Command Center & Executive Dashboard
 
 The core interface of UrbanFlow OPS is the **Live Operations Dashboard**. It is designed to be the primary decision-making surface on the massive wall displays of a traffic control room.
 
-- **GIS Traffic Map**: The central operations map. Instantly visualizes critical incidents via pulsing markers, color-coded by severity. 
-- **Congestion Heatmaps**: A live overlay demonstrating the density and spread of traffic friction.
-- **Resource Deployment Layer**: Tracks the real-time position and influence radius of deployed assets (patrols, barricades).
-- **Intervention Visualization**: Renders active signal retiming zones, closed corridors, and AI-recommended diversion routes as interactive polylines.
-- **Digital Twin Layer**: A toggleable state that replaces static incidents with animated blast radii representing predicted congestion propagation.
-- **WebSocket Streaming**: Fully asynchronous updates ensuring that when a new incident arrives, markers, heatmaps, and risk layers update instantaneously without frame drops or page reloads.
-
-**Operational Flow:**
-When a critical incident occurs, it immediately blips on the map. The commanding officer clicks the incident, opening an intelligence card displaying the Cause, Delay, Predicted Impact, and an AI-Generated Recommended Action. With one click, the officer reviews the simulated intervention and dispatches resources.
+- **Real Bengaluru GIS Intelligence**: The map is centered entirely around real Bengaluru congestion hotspots (Silk Board, KR Puram, MG Road, etc.), replacing synthetic random coordinates with true spatial intelligence.
+- **Congestion Propagation Simulator**: A toggleable Digital Twin state that replaces static incidents with animated blast radii representing predicted congestion propagation (T+15, T+30, T+60 rings dynamically expanding over time).
+- **Incident Action Panel**: When an incident occurs, the commanding officer clicks the incident, opening a unified workflow displaying the Cause, Delay, Predicted Impact, Traffic GPT Intelligence, and three exact intervention plans (A, B, C).
+- **Multi-Strategy Execution**: The platform outputs Plan A (Lowest Cost), Plan B (Fastest Recovery), and Plan C (Balanced), alongside detailed *Resource Explainability* so judges understand exactly *why* the AI chose its deployment numbers.
+- **Executive Dashboard**: A dedicated `/executive` route aggregates historical simulated data into a Palantir-style overview, tracking Total Economic Savings, Delay Prevented, Fuel/CO2 Saved, and Budget Efficiency.
 
 ---
 
