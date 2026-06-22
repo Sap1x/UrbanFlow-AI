@@ -1,0 +1,81 @@
+/* map.css - UrbanFlow OPS Custom Leaflet Map Styles */
+
+/* Base map overrides for dark theme */
+.leaflet-container {
+  background: #020408 !important;
+  font-family: var(--font-mono, monospace) !important;
+}
+
+/* Hide standard Leaflet attribution for operational aesthetic (optional, but requested for the Palantir look) */
+.leaflet-control-attribution {
+  display: none !important;
+}
+
+/* Map Controls */
+.leaflet-bar a, .leaflet-bar a:hover {
+  background-color: rgba(6, 10, 19, 0.9) !important;
+  color: var(--accent-cyan) !important;
+  border-bottom: 1px solid var(--border-subtle) !important;
+  border-radius: 0 !important;
+}
+.leaflet-control-layers {
+  background-color: rgba(6, 10, 19, 0.9) !important;
+  border: 1px solid var(--border-subtle) !important;
+  color: var(--text-primary) !important;
+  border-radius: var(--radius-sm) !important;
+}
+
+/* Popups */
+.leaflet-popup-content-wrapper {
+  background: rgba(6, 10, 19, 0.95) !important;
+  border: 1px solid var(--border-subtle) !important;
+  color: var(--text-primary) !important;
+  border-radius: var(--radius-sm) !important;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.8) !important;
+  backdrop-filter: blur(10px);
+}
+.leaflet-popup-tip {
+  background: rgba(6, 10, 19, 0.95) !important;
+  border-top: 1px solid var(--border-subtle) !important;
+  border-left: 1px solid var(--border-subtle) !important;
+}
+.leaflet-popup-close-button {
+  color: var(--text-muted) !important;
+}
+
+/* Pulsing Incident Markers */
+.incident-marker {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+.incident-marker-core {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  position: absolute;
+  z-index: 2;
+}
+
+.incident-marker-ring {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  position: absolute;
+  border: 2px solid;
+  animation: pulse-ring 2s cubic-bezier(0.215, 0.61, 0.355, 1) infinite;
+  box-sizing: border-box;
+}
+
+@keyframes pulse-ring {
+  0% { transform: scale(1); opacity: 0.8; }
+  100% { transform: scale(3); opacity: 0; }
+}
+
+/* Layer Control overrides */
+.leaflet-control-layers-list label {
+  color: var(--text-secondary);
+  font-size: 12px;
+}
