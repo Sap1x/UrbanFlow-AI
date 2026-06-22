@@ -120,49 +120,52 @@ graph TD
         WS[WebSocket Manager]
         
         subgraph Subsystems [Intelligence Layer]
-            ML[Machine Learning Ensemble]
-            Sim[Digital Twin Simulator]
-            Opt[Resource Optimizer]
-            Interv[Intervention Engine]
-            XAI[SHAP Explainability]
-            NLP[Copilot Processor]
+            MLEnsemble[Machine Learning Ensemble]
+            DigitalTwin[Digital Twin Simulator]
+            ResourceOptimizer[Resource Optimization Engine]
+            InterventionEngine[Intervention Engine]
+            ExplainabilityXAI[SHAP Explainability]
+            CopilotProcessor[Copilot Processor]
         end
     end
 
     subgraph Data [Data Layer]
-        Kafka[Event Stream]
-        DB[(Historical Operations Data)]
+        EventStream[Event Stream]
+        HistoryDB[(Historical Operations Data)]
     end
 
     UI <--> |REST/JSON| Gateway
     GIS <--> |WSS Live Stream| WS
-    Copilot <--> |REST| NLP
+    Copilot <--> |REST| CopilotProcessor
     
     Gateway --> Subsystems
     WS --> Subsystems
     
-    Subsystems --> DB
-    Kafka --> WS
+    Subsystems --> HistoryDB
+    EventStream --> WS
 ```
 
 ### Intelligence Pipeline
 
 ```mermaid
 sequenceDiagram
-    participant Ops as Command Center
+    participant OPS as Command Center
     participant API as FastAPI Gateway
-    participant ML as XGBoost + RF
-    participant Sim as Digital Twin
-    participant Opt as SciPy Optimizer
+    participant ML as XGBoost_RF_Ensemble
+    participant DT as Digital Twin Simulator
+    participant ResourceOptimizer as SciPy Optimizer
 
-    Ops->>API: Submit Incident (Event Type, Lat/Lng)
-    API->>ML: Request Risk Prediction
-    ML-->>API: Congestion Score (8.5/10)
-    API->>Sim: Request Propagation Physics
-    Sim-->>API: Radius: 4.2km, Delay: 45m
-    API->>Opt: Request Resource Strategy
-    Opt-->>API: Deploy: 42 Officers, 3 Vehicles
-    API-->>Ops: Return Full Intelligence Payload
+    OPS->>API: Submit Incident
+    API->>ML: Predict Congestion Risk
+    ML-->>API: Risk Score
+
+    API->>DT: Simulate Propagation
+    DT-->>API: Delay Estimate
+
+    API->>ResourceOptimizer: Calculate Deployment
+    ResourceOptimizer-->>API: Resource Plan
+
+    API-->>OPS: Intelligence Package
 ```
 
 ---
